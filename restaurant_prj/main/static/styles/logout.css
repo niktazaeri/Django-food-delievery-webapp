@@ -1,0 +1,64 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: rgb(251,229,63);
+    background: radial-gradient(circle, rgba(251,229,63,1) 0%, rgba(252,70,70,1) 100%);
+    color: #333;
+}
+
+.logout-container {
+    text-align: center;
+    padding: 30px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.9);
+    max-width: 400px;
+    width: 90%;
+}
+
+.logout-container h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #d9534f;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.buttons button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.logout-btn {
+    background-color: #b34a27;
+    color: white;
+}
+
+.logout-btn:hover {
+    background-color: #85371d;
+    transform: scale(1.05);
+}
+
+.cancel-btn {
+    background-color: #d4872f;
+    color: white;
+}
+
+.cancel-btn:hover {
+    background-color: #995c17;
+    transform: scale(1.05);
+}

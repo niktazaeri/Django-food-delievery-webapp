@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>داشبورد مشتری</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="{% static 'styles/customer_dashboard.css' %}" rel="stylesheet">
+</head>
+
+<body>
+<header>
+    <!-- آیکون سبد خرید در سمت چپ -->
+    <div class="cart-icon">
+        <a href="{% url 'customer-cart' %}">
+            <i class="fas fa-shopping-cart"></i>
+            <span id="cart-count">0</span>
+        </a>
+    </div>
+
+    <!-- لینک‌های داشبورد مشتری (پروفایل، سبد خرید، خروج) در سمت راست -->
+    <div class="nav-links">
+        <a href="{% url 'customer-profile' %}">پروفایل</a>
+        <a href="{% url 'customer-cart' %}">سبد خرید</a>
+        <a href="{% url 'logout-page' %}">خروج</a>
+    </div>
+</header>
+
+<main>
+
+    <section class="top-ten">
+        <h2>پرفروش‌ترین‌ها</h2>
+        <div id="top-ten-container">
+            <!-- غذاهای پرفروش اینجا بارگذاری می‌شوند -->
+        </div>
+    </section>
+
+
+
+    <section class="food-list">
+    <h2>لیست غذاها</h2>
+        <section class="filters">
+    <p>فیلتر بر اساس دسته‌بندی:</p>
+    <button class="filter-button" data-category="all">همه</button>
+    <button class="filter-button" data-category="ایرانی">ایرانی</button>
+    <button class="filter-button" data-category="فست فود">فست فود</button>
+    <button class="filter-button" data-category="دسر">دسر</button>
+    <button class="filter-button" data-category="پیش غذا">پیش غذا</button>
+    <button class="filter-button" data-category="نوشیدنی">نوشیدنی</button>
+</section>
+    <div id="food-list-container">
+        <!-- لیست غذاها اینجا بارگذاری می‌شوند -->
+    </div>
+
+    <!-- Pagination controls -->
+    <div id="pagination-container">
+        <!-- دکمه‌های pagination اینجا بارگذاری می‌شوند -->
+    </div>
+</section>
+
+    <div id="cart-notification" class="notification" style="display: none;">
+        <p>غذای شما به سبد خرید اضافه شد.</p>
+    </div>
+</main>
+
+<script src="{% static 'scripts/customer_dashboard.js' %}"></script>
+<script src="{% static 'scripts/cart.js' %}"></script>
+</body>
+</html>
+

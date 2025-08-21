@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فاکتور خرید</title>
+    <link href="{% static 'styles/checkout.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="order-summary">
+        <h2>خرید شما موفقیت آمیز بود</h2>
+        <div id="order-details">
+            <h3>جزئیات سفارش</h3>
+            <p><strong>آدرس:</strong> <span id="address"></span></p>
+            <h4>آیتم‌ها:</h4>
+            <ul id="order-items"></ul>
+            <p><strong>مبلغ کل:</strong> <span id="total-price"></span> </p>
+        </div>
+        <button id="back-to-home" class="btn">بازگشت به صفحه اصلی</button>
+    </div>
+
+    <script src="{% static 'scripts/checkout.js' %}"></script>
+</body>
+</html>

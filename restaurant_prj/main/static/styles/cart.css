@@ -1,0 +1,182 @@
+/* Overall Cart Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+}
+
+/* استایل هدر */
+header {
+    background: rgb(251,229,63);
+    background: radial-gradient(circle, rgba(251,229,63,1) 0%, rgba(252,70,70,1) 100%);
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between; /* توزیع محتوا به دو طرف */
+    align-items: center; /* تراز عمودی */
+}
+
+/* استایل لینک‌ها (پروفایل، سبد خرید، خروج) (راست) */
+header .nav-links {
+    display: flex;
+    gap: 15px; /* فاصله بین لینک‌ها */
+    font-size: 1rem;
+    justify-content: flex-end; /* انتقال به سمت راست */
+}
+
+header .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 2px 2px 2px black;
+}
+
+header .nav-links a:hover {
+    opacity: 0.8;
+}
+
+/* استایل سبد خرید */
+.cart {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart h2 {
+    text-align: center;
+    font-size: 26px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Cart Item Styles */
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-direction: column; /* تغییر به ستون */
+}
+
+.cart-item-details {
+    flex: 1;
+}
+
+.cart-item-actions {
+    display: inline-flex; /* دکمه‌ها به صورت inline-flex نمایش داده می‌شوند */
+    justify-content: flex-end; /* دکمه‌ها در سمت راست قرار می‌گیرند */
+    width: 100%; /* برای جلوگیری از overflow */
+    margin-top: 10px;
+}
+
+.cart-item-actions button {
+    padding: 8px 12px;
+    margin: 0 5px; /* فاصله بین دکمه‌ها */
+    background-color: #b34a27;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cart-item-actions button:hover {
+    background-color: #91371e;
+}
+
+.cart-item-actions button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Total Price Container Styling */
+.total-price-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.total-price-container p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* استایل برای دکمه‌های بازگشت و ثبت سفارش */
+#buttons-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    flex-wrap: nowrap; /* اطمینان از اینکه دکمه‌ها همیشه در یک خط قرار گیرند */
+}
+
+#back-button, #checkout-button {
+    padding: 12px 20px;
+    margin: 0 10px; /* فاصله بین دکمه‌ها */
+    font-size: 16px;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#back-button {
+    background-color: #6c757d;
+    color: white;
+}
+
+#back-button:hover {
+    background-color: #5a6268;
+}
+
+#checkout-button {
+    background-color: #b34a27;
+    color: white;
+}
+
+#checkout-button:hover {
+    background-color: #91371e;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .cart {
+        margin: 20px;
+        padding: 15px;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cart-item-actions {
+        flex-direction: row;
+        justify-content: flex-start; /* اگر بخواهیم دکمه‌ها در کنار هم باشند */
+        margin-top: 10px;
+    }
+
+    #checkout-button, #back-button {
+        width: 48%; /* دکمه‌ها به اندازه نیمه صفحه عرض می‌گیرند */
+    }
+
+    /* در صفحه‌های کوچکتر، دکمه‌ها به صورت عمودی نمایش داده می‌شوند */
+    #buttons-container {
+        flex-direction: row; /* دکمه‌ها را در یک خط قرار می‌دهد */
+        align-items: center; /* دکمه‌ها در وسط خط قرار می‌گیرند */
+    }
+}

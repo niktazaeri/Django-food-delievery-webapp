@@ -1,0 +1,66 @@
+
+/* فایل index.css */
+body {
+    margin: 0;
+    font-family: 'Vazir', sans-serif; /* اگر فونت مخصوص دارید، اضافه کنید */
+    background-size: cover; /* تصویر کاملاً صفحه را پوشش دهد */
+    color: #fff;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: rgba(0, 0, 0, 0.5); /* شفافیت برای خوانایی بهتر */
+    border-radius: 15px;
+    padding: 20px 40px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 90%;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #fffbfa; /* نزدیک به سفید برای تضاد بهتر */
+}
+
+#user-role-message {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+#dashboard-links button {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 8px;
+    color: #333;
+    padding: 10px 15px;
+    margin: 5px 0;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+#dashboard-links button:hover {
+    background-color: rgba(255, 255, 255, 1);
+    transform: scale(1.05);
+}
+
+#login-message, #register-message {
+    margin-top: 15px;
+    font-size: 1rem;
+}
+
+a {
+    color: #ffd700;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: #ff4500;
+}

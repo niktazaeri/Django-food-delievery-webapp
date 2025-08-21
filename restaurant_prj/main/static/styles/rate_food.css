@@ -1,0 +1,130 @@
+/* پس‌زمینه صفحه */
+body {
+    background: radial-gradient(circle, rgba(251,229,63,1) 0%, rgba(252,70,70,1) 100%);
+    font-family: 'Arial', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+/* هدر صفحه */
+h1 {
+    text-align: center;
+    color: #fff;
+    font-size: 2.5rem;
+    margin-top: 30px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* استایل غذاها */
+.food-item {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 30%;
+}
+.food-item:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+#order-items-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* فاصله بین کارت‌ها */
+}
+
+/* عنوان و توضیحات غذا */
+.food-item h3 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.food-item p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* استایل ستاره‌ها */
+.rating {
+    display: flex;
+    justify-content: flex-start;
+    direction: rtl;
+    margin-top: 10px;
+    gap: 5px;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    font-size: 30px;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.rating input:checked ~ label {
+    color: #f39c12; /* رنگ طلایی برای ستاره‌های انتخاب شده */
+}
+
+.rating label:hover,
+.rating label:hover ~ label {
+    color: #f39c12; /* رنگ طلایی هنگام هاور */
+}
+
+/* استایل دکمه‌ها */
+.rate-button {
+    margin-top: 15px;
+    padding: 10px 30px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.rate-button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.rate-button:active {
+    transform: scale(0.98);
+}
+
+#back-button {
+    margin-top: 15px;
+    padding: 10px 30px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#back-button:hover {
+    background-color: #5a6268;
+}
+
+#back-button:active {
+    transform: scale(0.98);
+}
+
+/* استایل برای متن‌ها */
+.text-center {
+    text-align: center;
+    margin-top: 40px;
+}
+#submit-rating-button{
+     background-color: #b34a27;
+    color: white;
+}

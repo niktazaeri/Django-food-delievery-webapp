@@ -1,0 +1,109 @@
+/* تنظیمات عمومی */
+body {
+    background: rgb(251, 229, 63);
+    background: radial-gradient(circle, rgba(251, 229, 63, 1) 0%, rgba(252, 70, 70, 1) 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Vazir', sans-serif; /* فونت فارسی دلخواه */
+    direction: rtl; /* راست‌چین برای زبان فارسی */
+    margin: 0;
+}
+
+/* کارت اصلی */
+.card {
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.95); /* شفافیت برای زیباتر شدن */
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
+    width: 600px; /* عرض container کمتر می‌شود */
+    padding: 30px;
+    margin-right: 28%;
+}
+
+/* عنوان فرم */
+.card h1 {
+    font-size: 2rem;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* فیلدهای فرم */
+form .form-control {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+form .form-control:focus {
+    border-color: rgba(252, 70, 70, 1);
+    box-shadow: 0 0 5px rgba(252, 70, 70, 0.5);
+}
+
+form label {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* دکمه‌ها */
+button {
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+#add-address {
+    background-color: rgba(251, 229, 63, 1);
+    color: #fff;
+    border: none;
+}
+
+#add-address:hover {
+    background-color: rgba(252, 70, 70, 1);
+}
+
+button[type="submit"] {
+    background-color: rgba(252, 70, 70, 1);
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    width: 100%; /* دکمه ثبت‌نام تمام عرض را بگیرد */
+}
+
+button[type="submit"]:hover {
+    background-color: rgba(255, 90, 90, 1);
+}
+
+/* پیام‌های پاسخ */
+#response-message {
+    font-size: 0.9rem;
+    color: #333;
+}
+
+/* تنظیمات بخش آدرس‌ها */
+#addresses-section h5 {
+    color: #444;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.address {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.address:not(:last-child) {
+    margin-bottom: 15px;
+}
+
+.address-input,
+.details-input,
+.postal-code-input {
+    margin-bottom: 10px;
+}

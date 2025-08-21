@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>داشبورد مشتری</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'styles/customer_profile.css' %}" rel="stylesheet">
+</head>
+<body class="bg-gradient">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'index' %}">داشبورد مشتری</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'customer-profile' %}">پروفایل</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'customer-cart' %}">سبد خرید</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout-page' %}">خروج</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <!-- Sidebar -->
+        <nav class="col-md-3 col-lg-2 d-md-block sidebar">
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action tab-link" data-target="order-history">تاریخچه
+                    سفارشات</a>
+                <a href="#" class="list-group-item list-group-item-action tab-link" data-target="completed-orders">سفارشات
+                    تکمیل شده</a>
+                <a href="#" class="list-group-item list-group-item-action tab-link" data-target="saved-addresses">آدرس‌های
+                    ثبت شده</a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="col-md-9 col-lg-10 ms-sm-auto px-md-4">
+            <div id="order-history" class="content-section" style="display: none;">
+                <h2>تاریخچه سفارشات</h2>
+                <p>لیست سفارشات مشتری اینجا نمایش داده می‌شود.</p>
+            </div>
+
+            <div id="completed-orders" class="content-section" style="display: none;">
+                <h2>سفارشات تکمیل شده</h2>
+            </div>
+
+            <div id="saved-addresses" class="content-section" style="display: none;">
+                <h2>آدرس‌های ثبت شده</h2>
+                <button id="add-address-btn" class="btn mb-3">افزودن آدرس جدید</button>
+
+                <div id="address-form-container" style="display: none;">
+                    <h3 id="form-title">افزودن آدرس جدید</h3>
+                    <form id="address-form">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">عنوان آدرس</label>
+                            <input type="text" class="form-control" id="title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">آدرس</label>
+                            <textarea class="form-control" id="address" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="details" class="form-label">جزئیات</label>
+                            <textarea class="form-control" id="details" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="postal_code" class="form-label">کد پستی</label>
+                            <input type="text" class="form-control" id="postal_code" required>
+                        </div>
+                        <input type="hidden" id="address-id">
+                        <button type="submit" class="btn btn-save">ذخیره آدرس</button>
+                        <button type="button" id="cancel-btn" class="btn btn-secondary mx-2">انصراف</button>
+                    </form>
+                </div>
+
+                <ul id="addresses-list" class="list-group">
+                    <!-- لیست آدرس‌ها -->
+                </ul>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'scripts/tabManager.js' %}"></script>
+<script src="{% static 'scripts/customer_profile.js' %}"></script>
+<script src="{% static 'scripts/order_history.js' %}"></script>
+<script src="{% static 'scripts/customer_completed_orders.js' %}"></script>
+<script src="{% static 'scripts/customer_address_management.js' %}"></script>
+<script src="{% static 'scripts/logout.js' %}"></script>
+</body>
+</html>

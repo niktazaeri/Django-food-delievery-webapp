@@ -1,0 +1,131 @@
+/* استایل‌های عمومی */
+body {
+    background: radial-gradient(circle, rgba(251,229,63,1) 0%, rgba(252,70,70,1) 100%);
+    font-family: 'Vazir', sans-serif;
+    color: #333;
+    display: flex;
+    justify-content: center; /* وسط‌چین افقی */
+    align-items: center; /* وسط‌چین عمودی */
+    direction: rtl;
+}
+
+.container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    box-sizing: border-box; /* اضافه کردن padding در محاسبه عرض */
+}
+
+h2 {
+    color: #2a2a2a;
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.address, .items, .total-price {
+    margin-bottom: 20px;
+}
+
+.item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s;
+}
+
+.item:last-child {
+    border-bottom: none;
+}
+
+.item:hover {
+    background-color: rgba(251, 229, 63, 0.2);
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+button {
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 48%;
+    transition: background-color 0.3s;
+}
+
+#back-to-address {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+#submit-order {
+    background-color: #d35e0a;
+    color: white;
+}
+
+#back-to-address:hover {
+    background-color: #ccc;
+}
+
+#submit-order:hover {
+    background-color: #f7a800;
+}
+
+.discount {
+    margin-top: 20px;
+    background-color: #fff8e1;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* برای وسط‌چین کردن در محور عمودی */
+}
+
+.discount h3 {
+    font-size: 16px;
+}
+
+.discount input {
+    padding: 8px;
+    width: 70%; /* عرض کادر ورودی کمی بیشتر از دکمه */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 10px; /* فاصله بین input و دکمه */
+}
+
+.discount button {
+    background-color: #f7a800;
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 28%; /* عرض دکمه کمتر از کادر ورودی */
+    transition: background-color 0.3s;
+}
+
+.discount button:hover {
+    background-color: #d35e0a;
+}
+
+
+#discount-info {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+}

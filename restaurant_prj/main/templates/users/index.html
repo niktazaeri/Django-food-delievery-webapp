@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static 'styles/index.css' %}">
+    <script src="{% static 'scripts/index.js' %}" defer></script>
+    <style>
+        body{
+             background: url("{% static 'images/128961367-food-pattern-with-seamless-hand-drawn-plate-fork-spoon-beer-noodle-egg-and-meat-on-yellow.jpg' %}") no-repeat center center fixed;
+        background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>خوش آمدید</h1>
+
+        <!-- This part will show a message based on the user's role -->
+        <div id="user-role-message">
+            <!-- Message will be updated by JavaScript -->
+        </div>
+
+        <div id="dashboard-links">
+            <button id="admin-dashboard" style="display: none;">پیشخوان مدیر</button>
+            <button id="customer-dashboard" style="display: none;">پیشخوان مشتری</button>
+            <button id="employee-dashboard" style="display: none;">پیشخوان کارمند</button>
+        </div>
+
+        <!-- A fallback message if no valid token is found -->
+        <div id="login-message" style="display: none;">
+{#            <p>لطفاً وارد حساب کاربری خود شوید.</p>#}
+            <a href="{% url 'login' %}">لطفاً وارد حساب کاربری خود شوید</a>
+        </div>
+        <div id="register-message" style="display: none;">
+            <a href="{% url 'register-customer' %}">اگر حساب کاربری ندارید ، ثبت نام کنید</a>
+        </div>
+    </div>
+</body>
+</html>

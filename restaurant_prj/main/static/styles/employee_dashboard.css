@@ -1,0 +1,99 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.sidebar {
+    height: 100vh;
+    /*background-color: #343a40;*/
+    color: white;
+    padding: 20px;
+    position: fixed;
+    width: 200px;
+    background: rgb(251,229,63);
+    background: radial-gradient(circle, rgba(251,229,63,1) 0%, rgba(252,70,70,1) 100%);
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin: 10px 0;
+    text-shadow: 2px 2px 2px black;
+}
+
+.sidebar a:hover {
+    /*text-decoration: underline;*/
+}
+
+.logout-btn {
+    position: fixed;
+    top: 20px; /* فاصله از بالای صفحه */
+    right: 20px; /* فاصله از راست صفحه */
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logout-btn:hover {
+    background-color: #e2e6ea;
+}
+
+.content {
+    margin-left: 220px;
+    padding: 20px;
+}
+
+.toast {
+    opacity: 0.9;
+    animation: fadeIn 0.5s, fadeOut 0.5s 2.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 0.9; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 0.9; }
+    to { opacity: 0; }
+}
+.btn-complete{
+    background-color: #b34a27;
+    color: white;
+}
+.text-bg-toast{
+    background-color: #b34a27;
+    color: black;
+}
+
+#completedOrdersSection {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+#completedOrdersSection h2 {
+    color: #343a40;
+}
+
+#completedOrdersList .card {
+    border: 1px solid #ddd;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#completedOrdersList .card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+#completedOrdersList .card-title {
+    font-weight: bold;
+}
+
+#completedOrdersList .card-text {
+    line-height: 1.5;
+}

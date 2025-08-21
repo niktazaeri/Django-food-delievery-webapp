@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout Confirmation</title>
+    <link href="{% static 'styles/logout.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="logout-container">
+        <h2>آیا می‌خواهید از حساب خود خارج شوید؟</h2>
+        <div class="buttons">
+            <button class="logout-btn" id="logout-confirm-btn">بله، خروج</button>
+            <button class="cancel-btn" id="cancel-btn">خیر، برگردم</button>
+        </div>
+    </div>
+
+<script src="{% static 'scripts/logout.js' %}"></script>
+
+</body>
+</html>

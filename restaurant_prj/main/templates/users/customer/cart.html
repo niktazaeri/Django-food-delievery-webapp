@@ -1,0 +1,36 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="{% static 'styles/cart.css' %}" rel="stylesheet">
+</head>
+<body>
+<header>
+
+    <!-- لینک‌های داشبورد مشتری (پروفایل، سبد خرید، خروج) در سمت راست -->
+    <div class="nav-links">
+        <a href="{% url 'customer-profile' %}">پروفایل</a>
+        <a href="{% url 'customer-cart' %}">سبد خرید</a>
+        <a href="{% url 'logout-page' %}">خروج</a>
+    </div>
+</header>
+<!-- سبد خرید -->
+<section class="cart">
+    <h2>سبد خرید شما</h2>
+    <div id="cart-items-container">
+        <!-- آیتم‌های سبد خرید اینجا بارگذاری می‌شوند -->
+    </div>
+    <!-- دکمه بازگشت و ثبت سفارش -->
+    <div id="buttons-container">
+        <button id="back-button">بازگشت</button>
+    </div>
+</section>
+
+
+
+<script src="{% static 'scripts/cart.js' %}"></script>
+</body>
+</html>

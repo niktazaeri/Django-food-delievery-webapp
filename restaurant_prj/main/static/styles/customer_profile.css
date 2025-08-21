@@ -1,0 +1,78 @@
+/* ریست پایه استایل‌ها */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    direction: rtl;
+}
+
+body {
+    font-family: 'Tahoma', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* استایل هدر */
+.navbar {
+    background: rgb(251,229,63);
+    background: radial-gradient(circle, rgba(251,229,63,1) 0%, rgba(252,70,70,1) 100%);
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between; /* توزیع محتوا به دو طرف */
+    align-items: center; /* تراز عمودی */
+}
+
+/* استایل لینک‌ها (پروفایل، سبد خرید، خروج) (راست) */
+.navbar .nav-links {
+    display: flex;
+    gap: 15px; /* فاصله بین لینک‌ها */
+    font-size: 1rem;
+    justify-content: flex-end; /* انتقال به سمت راست */
+}
+
+.navbar .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 2px 2px 2px black;
+}
+
+.navbar .nav-links a:hover {
+    opacity: 0.8;
+}
+
+/* استایل برای تب‌های فعال */
+.tab-link.active {
+    background-color: #FF8C00; /* نارنجی ملایم */
+    color: white; /* تغییر رنگ متن به سفید */
+    font-weight: bold; /* برجسته کردن متن */
+}
+
+.tab-link {
+    transition: background-color 0.3s ease, color 0.3s ease; /* انیمیشن ملایم */
+}
+
+.order-item ,#completed-orders .list-group-item , #saved-addresses .list-group-item {
+    background: rgba(142, 130, 130, 0.11); /* پس‌زمینه سفید با شفافیت */
+    border-radius: 8px; /* گوشه‌های گرد */
+    padding: 15px; /* فاصله داخلی */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* سایه برای عمق بیشتر */
+    transition: transform 0.3s ease; /* انیمیشن برای انتقال */
+}
+
+#add-address-btn{
+    background-color: #b34a27;
+    color: white;
+    margin-top: 20px;
+}
+
+.btn-save{
+    background-color: #b34a27;
+    color: white;
+}
+.btn-rate{
+    background-color: #b34a27;
+    color: white;
+}
+

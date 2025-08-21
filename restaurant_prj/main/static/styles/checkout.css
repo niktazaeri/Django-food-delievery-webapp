@@ -1,0 +1,91 @@
+/* استایل‌های عمومی */
+body {
+    background: radial-gradient(circle, rgba(251,229,63,1) 0%, rgba(252,70,70,1) 100%);
+    font-family: 'Vazir', sans-serif;
+    color: #333;
+    height: 100vh;
+    display: flex;
+    justify-content: center; /* وسط‌چین افقی */
+    align-items: center; /* وسط‌چین عمودی */
+    direction: rtl;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+}
+
+.order-summary {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+h2 {
+    color: #2a2a2a;
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+#order-details {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+h4 {
+    font-size: 18px;
+    color: #555;
+}
+
+ul#order-items {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+ul#order-items li {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+#total-price {
+    font-size: 18px;
+    color: #d35e0a;
+    font-weight: bold;
+}
+
+button {
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #f7a800;
+    color: white;
+    transition: background-color 0.3s;
+    width: 100%;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #d35e0a;
+}
+
+/* اضافه کردن استایل برای بخش تخفیف */
+#order-details p {
+    font-size: 16px;
+    color: #333;
+}
+
+#order-details p:last-child {
+    margin-top: 10px;
+}

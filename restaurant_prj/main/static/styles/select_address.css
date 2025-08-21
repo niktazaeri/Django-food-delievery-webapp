@@ -1,0 +1,95 @@
+/* استایل‌های عمومی */
+body {
+    background: radial-gradient(circle, rgba(251,229,63,1) 0%, rgba(252,70,70,1) 100%);
+    font-family: 'Vazir', sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* ارتفاع صفحه به 100% تنظیم می‌شود */
+    display: flex;
+    justify-content: center; /* وسط‌چین افقی */
+    align-items: center; /* وسط‌چین عمودی */
+}
+
+.container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 50%; /* عرض کانتینر */
+    max-width: 600px; /* محدودیت عرض برای جلوگیری از کش آمدن خیلی زیاد */
+    box-sizing: border-box; /* اضافه کردن padding در محاسبه عرض */
+}
+
+h2 {
+    color: #2a2a2a;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#addresses-container {
+    margin-top: 20px;
+}
+
+.address-item {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color 0.3s;
+}
+
+.address-item:hover {
+    background-color: rgba(251, 229, 63, 0.2);
+}
+
+input[type="radio"] {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+label {
+    font-size: 16px;
+    color: #555;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+#confirm-order-button {
+    background-color: #d35e0a;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+#confirm-order-button:hover {
+    background-color: #f7a800;
+}
+
+#back-button {
+    background-color: #ddd;
+    color: #333;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+#back-button:hover {
+    background-color: #ccc;
+}

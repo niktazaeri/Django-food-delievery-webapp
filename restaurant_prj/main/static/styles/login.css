@@ -1,0 +1,98 @@
+/* Reset CSS */
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Vazir', sans-serif; /* فونت دلخواه */
+    height: 100vh;
+    width: 100vw;
+}
+
+body {
+    background: rgb(251, 229, 63);
+    background: radial-gradient(circle, rgba(251, 229, 63, 1) 0%, rgba(252, 70, 70, 1) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    background-color: rgba(255, 255, 255, 0.8); /* شفافیت پس‌زمینه برای زیبایی */
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1rem;
+    color: #444;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border: 1px solid rgba(252, 70, 70, 1);
+}
+
+button#login-button {
+    background-color: rgba(252, 70, 70, 1);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+}
+
+button#login-button:hover {
+    background-color: rgba(255, 90, 90, 1);
+    transform: scale(1.05);
+}
+
+#error-message {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    display: none;
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    button#login-button {
+        font-size: 0.9rem;
+    }
+}
