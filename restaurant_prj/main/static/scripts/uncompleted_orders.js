@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem('token');
     if (!token) {
-        alert('Please log in first.');
+        alert('Please login to your account first.');
         window.location.href = '/login/';
         return;
     }
@@ -121,10 +121,10 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
     `;
 
-        // اضافه کردن اعلان به داخل container
+        // Adding a notification to the container
         toastContainer.insertAdjacentHTML('beforeend', toastHtml);
 
-        // حذف اعلان بعد از چند ثانیه
+        // Remove notification after 3 seconds
         setTimeout(() => {
             const toast = toastContainer.querySelector('.toast');
             if (toast) {

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Index</title>
     <link rel="stylesheet" href="{% static 'styles/index.css' %}">
     <script src="{% static 'scripts/index.js' %}" defer></script>
     <style>
@@ -16,7 +16,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>خوش آمدید</h1>
+        <h1>welcome!</h1>
 
         <!-- This part will show a message based on the user's role -->
         <div id="user-role-message">
@@ -32,10 +32,10 @@
         <!-- A fallback message if no valid token is found -->
         <div id="login-message" style="display: none;">
 {#            <p>لطفاً وارد حساب کاربری خود شوید.</p>#}
-            <a href="{% url 'login' %}">لطفاً وارد حساب کاربری خود شوید</a>
+            <a href="{% url 'login' %}">Please login to your account</a>
         </div>
         <div id="register-message" style="display: none;">
-            <a href="{% url 'register-customer' %}">اگر حساب کاربری ندارید ، ثبت نام کنید</a>
+            <a href="{% url 'register-customer' %}">Don't have an account? sign in.</a>
         </div>
     </div>
 </body>

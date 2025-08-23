@@ -19,9 +19,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const backToManageFoods = document.getElementById("backToManageFoods");
 
-    let foodId = null; // ذخیره ID غذا در حالت ویرایش
-    let currentPage = 1; // صفحه جاری
-    let totalPages = 1;  // تعداد کل صفحات
+    let foodId = null; // Save food ID in edit mode
+    let currentPage = 1;
+    let totalPages = 1;
 
     // Show the Manage Food Section
     function showFoodSection() {
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Previous button
         if (page > 1) {
             const prevButton = document.createElement("button");
-            prevButton.textContent = "قبلی";
+            prevButton.textContent = "previous";
             prevButton.classList.add("btn", "btn-prev", "me-2");
             prevButton.addEventListener("click", () => loadFoods(page - 1));
             paginationContainer.appendChild(prevButton);
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Next button
         if (page < totalPages) {
             const nextButton = document.createElement("button");
-            nextButton.textContent = "بعدی";
+            nextButton.textContent = "next";
             nextButton.classList.add("btn", "btn-next");
             nextButton.addEventListener("click", () => loadFoods(page + 1));
             paginationContainer.appendChild(nextButton);
@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return response.json();
             })
             .then(data => {
-                foodId = id; // ذخیره ID غذا برای ویرایش
+                foodId = id; // Save food ID in edit mode
                 document.getElementById("name").value = data.name;
                 document.getElementById("category").value = data.category;
                 document.getElementById("price").value = data.price;
@@ -180,11 +180,11 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch(`/api/foods/${id}/`)
             .then(response => response.json())
             .then(data => {
-                // ذخیره اطلاعات در localStorage
+                // save information in localStorage
                 localStorage.setItem('activeFoodId', id);
                 localStorage.setItem('foodDetails', JSON.stringify(data));
 
-                // نمایش اطلاعات غذا
+                // show food datas
                 showFoodInfo(data);
             })
             .catch(err => {
@@ -201,7 +201,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Handle Create Button Click
     createFoodBtn.addEventListener("click", () => {
-        foodId = null; // بازنشانی ID برای حالت ایجاد
+        foodId = null; // Reset ID for creation mode
         foodForm.reset();
         showFoodForm("Create Food");
     });
@@ -213,11 +213,11 @@ document.addEventListener("DOMContentLoaded", function () {
     foodForm.addEventListener("submit", (e) => {
         e.preventDefault();
 
-        const formData = new FormData(); // استفاده از FormData برای ارسال داده‌ها و فایل‌ها
+        const formData = new FormData(); // Using FormData to submit data and files
         formData.append("name", document.getElementById("name").value);
         const imageFile = document.getElementById("image").files[0];
         if (imageFile) {
-            formData.append("image", imageFile); // فقط زمانی که کاربر فایلی انتخاب کرده باشد، ارسال می‌شود
+            formData.append("image", imageFile); // Only sent when the user has selected a file.
         }
         formData.append("category", document.getElementById("category").value);
         formData.append("price", document.getElementById("price").value);
@@ -229,7 +229,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         fetch(url, {
             method: method,
-            body: formData, // ارسال داده‌ها به سرور
+            body: formData, // send datas to server
         })
             .then(response => {
                 if (!response.ok) {
@@ -258,7 +258,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (activeFoodId && foodDetailsStored && getActiveTabFromCookie() === "foodInfoSection") {
         const data = JSON.parse(foodDetailsStored);
-        showFoodInfo(data); // نمایش اطلاعات ذخیره شده در Local Storage
+        showFoodInfo(data); // show saved datas from Local Storage
     }
 
     // Load foods on page load

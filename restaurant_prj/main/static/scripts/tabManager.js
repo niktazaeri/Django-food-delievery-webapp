@@ -1,9 +1,9 @@
-// ذخیره شناسه تب فعال در کوکی
+// Store active tab ID in cookie
 function setActiveTabInCookie(tabId) {
     document.cookie = `activeTab=${tabId};path=/;`;
 }
 
-// خواندن تب فعال از کوکی
+// Read the active tab from a cookie
 function getActiveTabFromCookie() {
     const cookies = document.cookie.split("; ");
     const activeTabCookie = cookies.find(cookie => cookie.startsWith("activeTab="));
@@ -21,33 +21,33 @@ function hideAllSections(){
      const sidebarLinks = document.querySelectorAll(".sidebar a");
     const contentSections = document.querySelectorAll(".content-section");
 
-    // اضافه کردن event listener به هر لینک
+    // Add event listener to each link
     sidebarLinks.forEach(link => {
         link.addEventListener("click", function (e) {
-            e.preventDefault(); // جلوگیری از رفرش شدن صفحه
+            e.preventDefault();
 
-            // مخفی کردن همه بخش‌ها
+            // hide all sections
             contentSections.forEach(section => {
                 section.style.display = "none";
             });
 
-            // دریافت target (id بخش مورد نظر)
+            // Get target (ID of the desired section)
             const targetId = this.getAttribute("data-target");
             const targetSection = document.getElementById(targetId);
             if (targetSection) {
                 targetSection.style.display = "block";
-                setActiveTabInCookie(targetId); // ذخیره تب فعال در کوکی
+                setActiveTabInCookie(targetId); // save active tab in cookie
             }
         });
     });
 }
 
-// مدیریت تب‌ها
+// tabs management
 function setupTabManagement(defaultTabId) {
 
     hideAllSections()
 
-    // بازیابی تب فعال از کوکی و نمایش آن
+    // Retrieve the active tab from the cookie and display it
     const activeTabId = getActiveTabFromCookie();
     const activeSubTabId = getActiveSubTabFromCookie()
 
@@ -58,7 +58,7 @@ function setupTabManagement(defaultTabId) {
             activeSection.style.display = "block";
         }
     } else if (defaultTabId) {
-        // به طور پیش‌فرض نمایش تب مشخص
+        // Show specific tab by default
         const defaultSection = document.getElementById(defaultTabId);
         if (defaultSection) {
             defaultSection.style.display = "block";

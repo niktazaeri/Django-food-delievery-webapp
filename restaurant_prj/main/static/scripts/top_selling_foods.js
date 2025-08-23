@@ -1,17 +1,16 @@
 document.addEventListener("DOMContentLoaded", function() {
      const token = localStorage.getItem('token');
-    console.log(token); // نمایش توکن برای بررسی
+    console.log(token);
 
     if (!token) {
-        alert('Please log in first.');
+        alert('Please login to your account first.');
         window.location.href = '/login/';
         return;
     }
-    // گرفتن داده‌های غذاهای پرفروش از API
+    // Get best-selling food data from the API
     fetchTopSellingFoods();
 });
 
-// تابع برای گرفتن غذاهای پرفروش از API
 function fetchTopSellingFoods() {
     fetch('/api/top-ten-foods/')
         .then(response => response.json())
@@ -23,10 +22,10 @@ function fetchTopSellingFoods() {
         });
 }
 
-// تابع برای نمایش غذاهای پرفروش
+// Function to display best-selling foods
 function displayTopSellingFoods(foods) {
     const foodListContainer = document.getElementById('TopFoodList');
-    foodListContainer.innerHTML = '';  // پاک کردن محتوای قبلی
+    foodListContainer.innerHTML = '';
 
     if (foods.length === 0) {
         foodListContainer.innerHTML = '<p>No top-selling foods available.</p>';
@@ -39,7 +38,6 @@ function displayTopSellingFoods(foods) {
     });
 }
 
-// تابع برای ایجاد کارت غذا
 function createFoodCard(food) {
     const foodCard = document.createElement('div');
     foodCard.classList.add('col-md-4', 'mb-4');
@@ -51,7 +49,7 @@ function createFoodCard(food) {
                 <h5 class="card-title">${food.name}</h5>
                 <p class="card-text">Category: ${food.category}</p>
                 <p class="card-text">Sales: ${food.sales_count}</p>
-                <p class="card-text">Price: ${food.price} تومان</p>
+                <p class="card-text">Price: ${food.price} $</p>
             </div>
         </div>
     `;

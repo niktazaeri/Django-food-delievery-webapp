@@ -1,4 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // تنظیم مدیریت تب‌ها با شناسه تب پیش‌فرض
+    // manage tabs with default tab Id
     setupTabManagement('foodListSection');
 });

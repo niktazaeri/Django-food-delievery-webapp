@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem('token');
     if (!token) {
-        alert('لطفاً ابتدا وارد شوید.');
+        alert('Please login to your account first.');
         window.location.href = '/login/';
         return;
     }
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .then(response => {
         if (response.status === 403) {
-            alert('این سفارش متعلق به شما نیست.');
+            alert('This order does not belong to you.');
             window.location.href = '/';
             return;
         }
@@ -30,28 +30,28 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        const addressTitle = data.address.title || 'بدون عنوان';
+        const addressTitle = data.address.title || 'without title';
 
         document.getElementById('address').textContent = `${addressTitle} - ${data.address.address} - ${data.address.details}`;
-        document.getElementById('total-price').textContent = `${data.discounted_price} تومان`;
+        document.getElementById('total-price').textContent = `${data.discounted_price} $`;
 
         const itemsList = document.getElementById('order-items');
         data.items.forEach(item => {
             const listItem = document.createElement('li');
-            listItem.textContent = `${item.food.name} - ${item.quantity} عدد - ${item.total} تومان`;
+            listItem.textContent = `${item.food.name} - quantity : ${item.quantity} - ${item.total} $`;
             itemsList.appendChild(listItem);
         });
 
         const discountInfo = `
-            <p>قیمت اولیه: ${data.total_price} تومان</p>
-            <p>تخفیف: ${data.discount}%</p>
-            <p>مبلغ نهایی: ${data.discounted_price} تومان</p>
+            <p>first price: ${data.total_price} $</p>
+            <p>discount: ${data.discount}%</p>
+            <p>final price: ${data.discounted_price} $</p>
         `;
         document.getElementById('order-details').innerHTML += discountInfo;
     })
     .catch(error => {
         console.error('Error loading order details:', error);
-        alert('خطا در بارگذاری جزئیات سفارش.');
+        alert('error during loading order details.');
     });
 
     document.getElementById('back-to-home').addEventListener('click', function () {

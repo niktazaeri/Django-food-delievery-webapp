@@ -7,31 +7,31 @@ document.addEventListener("DOMContentLoaded", () => {
     const passwordError = document.getElementById("password-error");
     let addressCount = 1;
 
-    // افزودن آدرس جدید
+    // add new address
     addAddressButton.addEventListener("click", () => {
         addressCount++;
         const addressDiv = document.createElement("div");
         addressDiv.className = "address mb-3";
         addressDiv.innerHTML = `
-            <label for="title-${addressCount}" class="form-label">عنوان:</label>
+            <label for="title-${addressCount}" class="form-label">title:</label>
             <input type="text" class="title-input form-control mb-2" name="title">
-            <label for="address-${addressCount}" class="form-label">آدرس:</label>
+            <label for="address-${addressCount}" class="form-label">address:</label>
             <input type="text" class="address-input form-control mb-2" name="address" required>
-            <label for="details-${addressCount}" class="form-label">جزئیات:</label>
+            <label for="details-${addressCount}" class="form-label">detailes:</label>
             <input type="text" class="details-input form-control mb-2" name="details" required>
-            <label for="postal-code-${addressCount}" class="form-label">کد پستی:</label>
+            <label for="postal-code-${addressCount}" class="form-label">postal code:</label>
             <input type="text" class="postal-code-input form-control">
-            <button type="button" class="btn btn-danger mt-2 remove-address">حذف آدرس</button>
+            <button type="button" class="btn btn-danger mt-2 remove-address">remove address</button>
         `;
         addressesSection.appendChild(addressDiv);
 
-        // اضافه کردن رویداد حذف آدرس
+        // remove address btn
         addressDiv.querySelector(".remove-address").addEventListener("click", () => {
             addressDiv.remove();
         });
     });
 
-    // چک کردن تطابق رمز عبور
+    // Checking password match
     repeatPasswordInput.addEventListener("input", () => {
         if (passwordInput.value !== repeatPasswordInput.value) {
             passwordError.style.display = "block";
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // ارسال اطلاعات فرم
+    // send form information
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
@@ -85,24 +85,24 @@ document.addEventListener("DOMContentLoaded", () => {
             const responseData = await response.json();
 
             if (response.ok) {
-                // ذخیره توکن در localStorage
+                // save token in localStorage
                 if (responseData.token) {
                     localStorage.setItem("token", responseData.token);
                 }
                 document.getElementById("response-message").innerText = "ثبت‌نام با موفقیت انجام شد!";
                 document.getElementById("response-message").className = "text-success";
 
-                // هدایت به صفحه اصلی رستوران
+                // redirect to main restaurant page
                 setTimeout(() => {
-                    window.location.href = "/customer-dashboard/"; // مسیر صفحه اصلی رستوران
+                    window.location.href = "/customer-dashboard/";
 
-                }, 2000); // صبر ۲ ثانیه‌ای
+                }, 2000);
             } else {
-                document.getElementById("response-message").innerText = `خطا: ${JSON.stringify(responseData)}`;
+                document.getElementById("response-message").innerText = `error: ${JSON.stringify(responseData)}`;
                 document.getElementById("response-message").className = "text-danger";
             }
         } catch (error) {
-            document.getElementById("response-message").innerText = `خطا در ارتباط با سرور. لطفاً دوباره تلاش کنید.`;
+            document.getElementById("response-message").innerText = `Error connecting to the server. Please try again..`;
             document.getElementById("response-message").className = "text-danger";
         }
     });

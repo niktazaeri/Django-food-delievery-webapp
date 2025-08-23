@@ -3,13 +3,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const selectedAddressId = localStorage.getItem('selectedAddressId');
 
     if (!token) {
-        alert('لطفاً ابتدا وارد شوید.');
+        alert('Please login to your account first.');
         window.location.href = '/login/';
         return;
     }
 
     if (!selectedAddressId) {
-        alert('لطفاً آدرس خود را انتخاب کنید.');
+        alert('Please choose your address.');
         window.location.href = '/select-address/';
         return;
     }
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        const addressTitle = data.address.title || 'بدون عنوان'; // اگر عنوان null باشد، نمایش نمی‌دهد.
+        const addressTitle = data.address.title || 'without title';
         const addressAddress = data.address.address;
         const addressDetails = data.address.details ;
 
@@ -40,21 +40,21 @@ document.addEventListener("DOMContentLoaded", function () {
         const itemsContainer = document.getElementById('order-items');
         itemsContainer.innerHTML = data.items.map(item => `
             <div class="item">
-                <p>نام: ${item.food.name}</p>
-                <p>قیمت: ${item.food.price} تومان</p>
-                <p>تعداد: ${item.quantity}</p>
-                <p>جمع کل: ${item.total_price} تومان</p>
+                <p>food: ${item.food.name}</p>
+                <p>price: ${item.food.price} $</p>
+                <p>quantity: ${item.quantity}</p>
+                <p>total price: ${item.total_price} $</p>
             </div>
         `).join('');
 
         let totalPrice = data.total_price;
-        document.getElementById('total-price').innerText = `${totalPrice} تومان`;
+        document.getElementById('total-price').innerText = `${totalPrice} $`;
 
         const discountFieldHTML = `
             <div class="discount">
-                <h3>کد تخفیف:</h3>
-                <input type="text" id="coupon-code" placeholder="کد تخفیف را وارد کنید">
-                <button id="apply-coupon">اعمال تخفیف</button>
+                <h3>discount code:</h3>
+                <input type="text" id="coupon-code" placeholder="Enter your discount code">
+                <button id="apply-coupon">apply discount</button>
                 <p id="discount-info"></p>
             </div>
         `;
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const couponCode = document.getElementById('coupon-code').value;
 
             if (!couponCode) {
-                alert('لطفاً کد تخفیف را وارد کنید.');
+                alert('Please enter your discount code.');
                 return;
             }
 
@@ -80,13 +80,13 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 if (data.discounted_price) {
                     document.getElementById('discount-info').innerHTML = `
-                        قبل از تخفیف: ${data.original_price} تومان | 
-                        تخفیف: ${data.discount}% | 
-                        مبلغ پس از تخفیف: ${data.discounted_price} تومان
+                        Before discount: ${data.original_price} $ | 
+                        OFF: ${data.discount}% | 
+                        Price after discount: ${data.discounted_price} $
                     `;
-                    document.getElementById('total-price').innerText = `${data.discounted_price} تومان`;
+                    document.getElementById('total-price').innerText = `${data.discounted_price} $`;
                 } else {
-                    alert(data.message || 'خطا در اعمال تخفیف');
+                    alert(data.message || 'Error in discount application');
                 }
             });
         });
@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch(error => {
         console.error('Error loading order preview:', error);
-        alert('خطا در بارگذاری پیش‌نمایش سفارش.');
+        alert('Error while loading order pre-view.');
     });
 
     const submitOrder = (addressId, couponCode) => {
@@ -117,15 +117,15 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                alert('سفارش شما ثبت شد!');
+                alert('Your order has been registered!');
                 window.location.href = `/checkout/${data.order_id}/`;
             } else {
-                alert('خطا در ثبت سفارش.');
+                alert('Error in order registration.');
             }
         })
         .catch(error => {
             console.error('Error submitting order:', error);
-            alert('خطا در ثبت سفارش.');
+            alert('Error in order registration.');
         });
     };
 });

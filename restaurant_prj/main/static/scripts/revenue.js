@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem('token');
     if (!token) {
-        alert('Please log in first.');
+        alert('Please login to your account first.');
         window.location.href = '/login/';
         return;
     }
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Make API request
         fetch(`/api/total-revenue/?start_date=${startDate}&end_date=${endDate}`)
             .then(response => {
-                console.log("Response Status:", response.status); // چاپ وضعیت پاسخ
+                console.log("Response Status:", response.status);
                 console.log("Response Headers:", response.headers);
                 if (response.ok) {
                     return response.json();
@@ -37,8 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             })
             .then(data => {
-                console.log("API Data:", data); // چاپ داده‌های API
-                revenueResult.textContent = `${data.message} ${data.total_revenue} تومان`;
+                console.log("API Data:", data);
+                revenueResult.textContent = `${data.message} ${data.total_revenue} $`;
                 revenueResult.classList.remove("text-danger");
                 revenueResult.classList.add("text-success");
             })

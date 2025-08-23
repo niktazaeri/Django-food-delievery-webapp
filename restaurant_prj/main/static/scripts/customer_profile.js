@@ -1,4 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // تنظیم مدیریت تب‌ها با شناسه تب پیش‌فرض
+    // Set up tab management with default tab ID
     setupTabManagement('order-history');
 });

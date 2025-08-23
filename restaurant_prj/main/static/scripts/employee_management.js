@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem('token');
     if (!token) {
-        alert('Please log in first.');
+        alert('Please login to your account first.');
         window.location.href = '/login/';
         return;
     }
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const employeeList = document.getElementById("employeeList");
     const employeeDetails = document.getElementById("employeeDetails");
 
-    let employeeId = null; // ذخیره ID کارمند در حالت ویرایش
+    let employeeId = null; // Save employee ID in edit mode
 
     // Show the Manage Employee Section
     function showManageEmployeeSection() {
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Show the Info Section
     function showEmployeeInfo(data) {
-        // نمایش اطلاعات کارمند
+        // show employee datas
         document.getElementById("employeeDetails").innerHTML = `
                 <strong>Username:</strong> ${data.username}<br>
                 <strong>First Name:</strong> ${data.first_name}<br>
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <strong>Email:</strong> ${data.email}<br>
                 <strong>Phone Number:</strong> ${data.phone_number}<br>
             `;
-        // نمایش بخش اطلاعات کارمند
+        // show employee's datas section
         employeeInfoSection.style.display = "block";
         manageEmployeeSection.style.display = "none";
         employeeFormSection.style.display = "none";
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return response.json();
             })
             .then(data => {
-                employeeId = id; // ذخیره ID کارمند برای ویرایش
+                employeeId = id; // Save employee ID for edit
                 document.getElementById("username").value = data.username;
                 document.getElementById("password").value = data.password;
                 document.getElementById("firstName").value = data.first_name;
@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // View Employee Info
     window.viewEmployee = function (id) {
-        fetch(`/api/employees/${id}/`) // فرض بر اینکه این API اطلاعات کارمند را برمی‌گرداند
+        fetch(`/api/employees/${id}/`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Failed to load employee details");
@@ -156,11 +156,11 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .then(data => {
 
-                // ذخیره شناسه و اطلاعات کارمند در localStorage
-                localStorage.setItem('activeEmployeeId', id); // ذخیره شناسه کارمند
-                localStorage.setItem('employeeDetails', JSON.stringify(data)); // ذخیره اطلاعات کارمند
+                // Save employee ID and information in localStorage
+                localStorage.setItem('activeEmployeeId', id); // Save employee ID
+                localStorage.setItem('employeeDetails', JSON.stringify(data)); // save employee datas
 
-                // نمایش اطلاعات کارمند
+                // show employee infos
                 showEmployeeInfo(data);
             })
             .catch(err => {
@@ -190,11 +190,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Submit Employee Form
     employeeForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        // دریافت مقدارهای رمز عبور و تکرار آن
+        // Get password values and repeated one
         const password = document.getElementById("password").value;
         const repeatPassword = document.getElementById("password-repeat").value;
 
-        // بررسی تطابق رمز عبور
+        // check password confirmation
         if (password !== repeatPassword) {
             const errorMsg = document.getElementById("passwordError");
             errorMsg.textContent = "Passwords do not match!";
@@ -249,7 +249,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (activeCouponId && employeeDetailsStored && getActiveTabFromCookie() === "employeeInfoSection") {
         const data = JSON.parse(employeeDetailsStored);
-        showEmployeeInfo(data); // نمایش اطلاعات ذخیره شده در Local Storage
+        showEmployeeInfo(data); // show saved datas from Local Storage
     }
     // Load employees on page load
     loadEmployees();

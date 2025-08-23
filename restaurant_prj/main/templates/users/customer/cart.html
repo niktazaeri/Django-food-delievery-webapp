@@ -4,28 +4,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>cart</title>
     <link href="{% static 'styles/cart.css' %}" rel="stylesheet">
 </head>
 <body>
 <header>
 
-    <!-- لینک‌های داشبورد مشتری (پروفایل، سبد خرید، خروج) در سمت راست -->
+    <!-- Customer dashboard links (profile, cart, exit) on the right -->
     <div class="nav-links">
-        <a href="{% url 'customer-profile' %}">پروفایل</a>
-        <a href="{% url 'customer-cart' %}">سبد خرید</a>
-        <a href="{% url 'logout-page' %}">خروج</a>
+        <a href="{% url 'customer-profile' %}">Profile</a>
+        <a href="{% url 'customer-cart' %}">Cart</a>
+        <a href="{% url 'logout-page' %}">Exit</a>
     </div>
 </header>
-<!-- سبد خرید -->
+<!-- cart -->
 <section class="cart">
-    <h2>سبد خرید شما</h2>
+    <h2>Your Cart</h2>
     <div id="cart-items-container">
-        <!-- آیتم‌های سبد خرید اینجا بارگذاری می‌شوند -->
+        <!-- Cart items are loaded here. -->
     </div>
-    <!-- دکمه بازگشت و ثبت سفارش -->
+    <!-- back and order button -->
     <div id="buttons-container">
-        <button id="back-button">بازگشت</button>
+        <button id="back-button">back</button>
     </div>
 </section>
 

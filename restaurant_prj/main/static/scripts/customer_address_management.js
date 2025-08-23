@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const ACTIVE_TAB_KEY = 'activeTab';
     const FORM_VISIBILITY_KEY = 'formVisible';
 
-    // نمایش تب فعال
+    // show active tab
     function showTab(tabId) {
         contentSections.forEach(section => {
             section.style.display = section.id === tabId ? 'block' : 'none';
@@ -25,11 +25,11 @@ document.addEventListener('DOMContentLoaded', function () {
             link.classList.toggle('active', link.getAttribute('data-target') === tabId);
         });
 
-        // ذخیره نام تب فعال
+        // save active tab in localStorage
         localStorage.setItem(ACTIVE_TAB_KEY, tabId);
     }
 
-    // ثبت کلیک روی لینک‌های تب
+    // save clicks on tab links
     tabLinks.forEach(link => {
         link.addEventListener('click', function (event) {
             event.preventDefault();
@@ -38,18 +38,18 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // بازیابی تب فعال از localStorage یا نمایش تب پیش‌فرض
+    // retrieving active tab from localStorage or show default tab
     const savedTab = localStorage.getItem(ACTIVE_TAB_KEY);
     const defaultTab = tabLinks[0]?.getAttribute('data-target'); // اولین تب به عنوان پیش‌فرض
     showTab(savedTab || defaultTab);
 
-    // نمایش یا مخفی کردن فرم آدرس بر اساس وضعیت ذخیره‌شده
+    // show or hide address form
     function toggleAddressForm(show) {
         addressFormContainer.style.display = show ? 'block' : 'none';
-        addressesList.style.display = show ? 'none' : 'block'; // لیست را بر اساس نمایش فرم تنظیم کنید
+        addressesList.style.display = show ? 'none' : 'block';
         localStorage.setItem(FORM_VISIBILITY_KEY, show ? 'true' : 'false');
 
-        // مخفی کردن یا نمایش دکمه "افزودن آدرس جدید" و "آدرس‌های ثبت شده"
+        // Hide or show the "Add New Address" and "Registered Addresses" buttons
         const savedAddressesSection = document.getElementById('saved-addresses');
         const h2 = savedAddressesSection.querySelector('h2');
         const addButton = savedAddressesSection.querySelector('#add-address-btn');
@@ -63,10 +63,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // دکمه افزودن آدرس جدید
+    // add new address button
     addAddressButton.addEventListener('click', function () {
         toggleAddressForm(true);
-        document.getElementById('form-title').textContent = 'افزودن آدرس جدید';
+        document.getElementById('form-title').textContent = 'add new address';
 
         // Clear stored form data when adding new address
         localStorage.removeItem('addressFormData');
@@ -79,18 +79,18 @@ document.addEventListener('DOMContentLoaded', function () {
         addressIdInput.value = '';
     });
 
-    // دکمه انصراف
+    // cancel btn
     cancelBtn.addEventListener('click', function () {
         toggleAddressForm(false);
-        // پاک کردن داده‌های فرم
+        // deleting form's data
         localStorage.removeItem('addressFormData');
     });
 
-    // بازیابی وضعیت فرم از localStorage
+    // retrieving form status from localStorage
     const isFormVisible = localStorage.getItem(FORM_VISIBILITY_KEY) === 'true';
     toggleAddressForm(isFormVisible);
 
-    // بازیابی داده‌های فرم از localStorage
+    // retrieving form datas from localStorage
     const savedFormData = JSON.parse(localStorage.getItem('addressFormData'));
     if (savedFormData) {
         titleInput.value = savedFormData.title || '';
@@ -98,11 +98,11 @@ document.addEventListener('DOMContentLoaded', function () {
         detailsInput.value = savedFormData.details || '';
         postalCodeInput.value = savedFormData.postal_code || '';
         addressIdInput.value = savedFormData.id || '';
-        document.getElementById('form-title').textContent = savedFormData.id ? 'ویرایش آدرس' : 'افزودن آدرس جدید';
+        document.getElementById('form-title').textContent = savedFormData.id ? 'edit address' : 'add new address';
         toggleAddressForm(true);
     }
 
-    // تابع ویرایش آدرس
+    // edit address function
     window.editAddress = function (addressId) {
         const token = localStorage.getItem('token');
 
@@ -114,14 +114,14 @@ document.addEventListener('DOMContentLoaded', function () {
         })
             .then(response => response.json())
             .then(address => {
-                // پر کردن فرم با اطلاعات آدرس برای ویرایش
+                // filling form with selected address to edit
                 titleInput.value = address.title || '';
                 addressInput.value = address.address || '';
                 detailsInput.value = address.details || '';
                 postalCodeInput.value = address.postal_code || '';
                 addressIdInput.value = addressId;
 
-                // ذخیره اطلاعات فرم در localStorage برای ماندن پس از رفرش
+                // Save form data in localStorage to persist after refresh
                 localStorage.setItem('addressFormData', JSON.stringify({
                     title: address.title,
                     address: address.address,
@@ -130,8 +130,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     id: addressId
                 }));
 
-                document.getElementById('form-title').textContent = 'ویرایش آدرس';
-                toggleAddressForm(true); // نمایش فرم
+                document.getElementById('form-title').textContent = 'edit address';
+                toggleAddressForm(true); // show form
             })
             .catch(error => console.error('Error fetching address details:', error));
     };
@@ -154,11 +154,11 @@ document.addEventListener('DOMContentLoaded', function () {
                         const listItem = document.createElement('li');
                         listItem.classList.add('list-group-item');
                         listItem.innerHTML = `
-                            <strong>${address.title || 'بدون عنوان'}</strong><br>
+                            <strong>${address.title || 'without title'}</strong><br>
                             ${address.address} - ${address.details} <br>
-                            ${address.postal_code ? 'کد پستی: ' + address.postal_code : ''}
-                            <button class="btn btn-warning btn-sm float-end mx-2" onclick="editAddress(${address.id})">ویرایش</button>
-                            <button class="btn btn-danger btn-sm float-end mx-2" onclick="deleteAddress(${address.id})">حذف</button>
+                            ${address.postal_code ? 'postal code: ' + address.postal_code : ''}
+                            <button class="btn btn-warning btn-sm float-end mx-2" onclick="editAddress(${address.id})">edit</button>
+                            <button class="btn btn-danger btn-sm float-end mx-2" onclick="deleteAddress(${address.id})">delete</button>
                         `;
                         addressesList.appendChild(listItem);
                     });
@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.deleteAddress = function(addressId) {
         const token = localStorage.getItem('token');
 
-        if (confirm('آیا از حذف این آدرس اطمینان دارید؟')) {
+        if (confirm('Are you sure about deleting this address?')) {
             fetch(`/api/delete-address/${addressId}/`, {
                 method: 'DELETE',
                 headers: {

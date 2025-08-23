@@ -4,35 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>پیش‌نمایش سفارش</title>
+    <title>order pre-view</title>
     <link href="{% static 'styles/order_preview.css' %}" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-    <h2>پیش‌نمایش سفارش</h2>
+    <h2>order preview</h2>
 
     <div class="address">
-        <h3>آدرس انتخاب‌شده:</h3>
+        <h3>selected address:</h3>
         <p id="address-title"></p>
         <p id="address-address"></p>
         <p id="address-details"></p>
     </div>
 
     <div class="items">
-        <h3>آیتم‌های سفارش:</h3>
+        <h3>order items:</h3>
         <div id="order-items">
-            <!-- آیتم‌های سفارش در اینجا اضافه می‌شوند -->
+            <!-- Order items are added here. -->
         </div>
     </div>
 
     <div class="total-price">
-        <h3>مبلغ کل:</h3>
+        <h3>total price:</h3>
         <p id="total-price"></p>
     </div>
 
     <div class="buttons">
-        <button id="back-to-address">بازگشت به انتخاب آدرس</button>
-        <button id="submit-order">ثبت سفارش</button>
+        <button id="back-to-address">back to select address</button>
+        <button id="submit-order">confirm order</button>
     </div>
 </div>
 

@@ -2,23 +2,23 @@ document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem('token'); // دریافت توکن از localStorage
 
     if (!token) {
-        alert('لطفاً ابتدا وارد شوید.');
+        alert('Please login first.');
         window.location.href = '/login/';
         return;
     }
 
-    // دکمه تایید لاگ اوت
+    // confirm logout btn
         document.getElementById('logout-confirm-btn').addEventListener('click', function() {
             logout();
         });
 
-        // دکمه لغو
+        // cancel btn
         document.getElementById('cancel-btn').addEventListener('click', function() {
-            // برگرداندن کاربر به صفحه قبلی
-            window.history.back();  // بر می‌گرداند به صفحه قبلی که کاربر از آن آمده است
+            // return user back to previous page
+            window.history.back();
         });
 
-    // تابع لاگ اوت
+    // logout function
     function logout() {
         fetch('/api/logout/', {
             method: 'POST',
@@ -30,17 +30,17 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(data => {
             if (data.detail === 'Successfully logged out.') {
-                // پاک کردن توکن از localStorage
+                // remove token from localStorage
                 localStorage.removeItem('token');
-                // هدایت به صفحه اصلی
+                // redirect to main page
                 window.location.href = '/';
             } else {
-                alert('خطا در انجام عملیات لاگ اوت.');
+                alert('Error while logout.');
             }
         })
         .catch(error => {
             console.error('Error during logout:', error);
-            alert('خطا در انجام عملیات لاگ اوت.');
+            alert('Error while logout.');
         });
     }
 });

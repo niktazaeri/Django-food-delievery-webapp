@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
 
-        // ارسال درخواست لاگین به API
         fetch('/api/login/', {
             method: 'POST',
             headers: {
@@ -23,14 +22,12 @@ document.addEventListener("DOMContentLoaded", () => {
             if (response.ok) {
                 return response.json();
             } else {
-                throw new Error('نام کاربری یا رمز عبور اشتباه است');
+                throw new Error('Invalid username or password');
             }
         })
         .then(data => {
-            // ذخیره توکن در کوکی
-            // document.cookie = `auth_token=${data.token}; path=/; SameSite=Lax;`;
             localStorage.setItem('token', data.token);
-            // هدایت به صفحه اصلی
+            // redirect to main page
             window.location.href = '/';
         })
         .catch(error => {

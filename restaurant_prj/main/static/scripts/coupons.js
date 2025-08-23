@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem('token');
     if (!token) {
-        alert('Please log in first.');
+        alert('Please log in to your account first.');
         window.location.href = '/login/';
         return;
     }
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const couponList = document.getElementById("couponList");
     let couponDetails = document.getElementById("couponDetails");
 
-    let couponId = null; // ذخیره ID کوپن در حالت ویرایش
+    let couponId = null; // save coupon id during editing
 
     // Show the Manage Coupon Section
     function showCouponSection() {
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Edit Coupon
     window.editCoupon = function (id) {
-        couponId = id; // ذخیره ID کوپن برای ویرایش
+        couponId = id; // save coupon id for editing
         localStorage.setItem("formTitle", "Edit Coupon");
         showCouponForm(); // Call showCouponForm to load the coupon data
     };
@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch(`/api/coupons/${id}/`)
             .then(response => response.json())
             .then(data => {
-                // ذخیره اطلاعات در localStorage
+                // save datas in localStorage
                 localStorage.setItem('activeCouponId', id);
                 localStorage.setItem('couponDetails', JSON.stringify(data));
                 showCouponInfo(data);
@@ -185,9 +185,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 return response.json();
             })
             .then((data) => {
-                console.log('Edited Coupon:', data); // بررسی داده‌های ویرایش شده
+                console.log('Edited Coupon:', data); // checking edited datas
     showCouponSection();
-    loadCoupons(); // بارگذاری مجدد کوپن‌ها
+    loadCoupons(); // re-loading coupons
             })
             .catch(err => {
                 console.error("Error:", err);

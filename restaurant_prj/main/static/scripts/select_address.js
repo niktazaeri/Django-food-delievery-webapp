@@ -2,15 +2,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem('token');
     const addressesContainer = document.getElementById('addresses-container');
     const confirmOrderButton = document.getElementById('confirm-order-button');
-    const backButton = document.getElementById('back-button'); // دکمه برگشت
+    const backButton = document.getElementById('back-button');
 
     if (!token) {
-        alert('لطفاً ابتدا وارد شوید.');
+        alert('Please login to your account first.');
         window.location.href = '/login/';
         return;
     }
 
-    // بارگذاری آدرس‌ها
+    // load addresses
     fetch('/api/addresses/', {
         method: 'GET',
         headers: {
@@ -21,17 +21,17 @@ document.addEventListener("DOMContentLoaded", function () {
     .then(response => response.json())
     .then(data => {
         if (data.length === 0) {
-            addressesContainer.innerHTML = '<p>شما هیچ آدرسی ذخیره نکرده‌اید.</p>';
+            addressesContainer.innerHTML = '<p>You have not saved any addresses.</p>';
             return;
         }
 
-        // نمایش آدرس‌ها
+        // show addresses
         data.forEach(address => {
             const addressElement = document.createElement('div');
             addressElement.className = 'address-item';
 
-            // بررسی اینکه عنوان آدرس null نباشد و در صورت null بودن، متن "بدون عنوان" قرار دهیم
-            const title = address.title ? address.title : 'بدون عنوان';
+            // Check that the address title is not null and if it is null, set the text "No title"
+            const title = address.title ? address.title : 'No title';
 
             addressElement.innerHTML = `
                 <input type="radio" name="address" value="${address.id}" id="address-${address.id}">
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 </label>
             `;
 
-            // علامت‌گذاری آدرس انتخاب‌شده
+            // Mark selected address
             if (localStorage.getItem('selectedAddressId') === address.id.toString()) {
                 addressElement.querySelector('input').checked = true;
             }
@@ -49,29 +49,29 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch(error => {
         console.error('Error loading addresses:', error);
-        alert('خطا در بارگذاری آدرس‌ها.');
+        alert('Error loading addresses.');
     });
 
-    // تایید سفارش
+    // confirm order
     confirmOrderButton.addEventListener('click', function () {
         const selectedAddressId = document.querySelector('input[name="address"]:checked')?.value;
 
         if (!selectedAddressId) {
-            alert('لطفاً یک آدرس انتخاب کنید.');
+            alert('Please choose an address.');
             return;
         }
 
-        // ذخیره آدرس انتخاب‌شده در لوکال‌استور
+        // Save the selected address to localStorage
         localStorage.setItem('selectedAddressId', selectedAddressId);
 
-        // هدایت به صفحه پیش‌نمایش سفارش
+        // redirect to order pre-view page
         window.location.href = '/order-preview/';
     });
 
-    // دکمه برگشت
+    // back btn
     if (backButton) {
         backButton.addEventListener('click', () => {
-            window.location.href = '/cart/'; // برگشت به صفحه قبلی
+            window.location.href = '/cart/'; // back to cart page
         });
     }
 });

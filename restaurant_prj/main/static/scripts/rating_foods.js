@@ -7,10 +7,9 @@ document.addEventListener('DOMContentLoaded', function () {
         return; // Stop execution if token is missing
     }
 
-    const orderId = window.location.pathname.split('/')[2];  // گرفتن آیدی سفارش از URL
+    const orderId = window.location.pathname.split('/')[2];  // get order id from URL
     console.log(orderId);
 
-    // ارسال درخواست POST به API با اضافه کردن orderId به بدنۀ درخواست
     fetch(`/api/profile/completed-orders/${orderId}/rate/`, {
         method: 'POST',
         headers: {
@@ -18,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            order_id: orderId // ارسال order_id در بدنه درخواست
+            order_id: orderId
         })
     })
     .then(response => response.json())
@@ -34,8 +33,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 foodDiv.innerHTML = `
                     <h3>${food.name}</h3>
                     <p>${food.description}</p>
-                    <p>قیمت: ${item.total_price} تومان</p>
-                    <label for="rating-${food.id}">امتیاز:</label>
+                    <p>price: ${item.total_price} $</p>
+                    <label for="rating-${food.id}">rate:</label>
                     <div class="rating">
                         <input type="radio" id="star5-${food.id}" name="rating-${food.id}" value="5">
                         <label for="star5-${food.id}">&#9733;</label>
@@ -52,19 +51,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 container.appendChild(foodDiv);
             });
         } else {
-            alert('غذاهای مرتبط با این سفارش یافت نشد.');
+            alert('No foods related to this order were found..');
         }
     })
     .catch(error => {
-        alert('خطا در بارگذاری داده‌ها.');
+        alert('Error loading data.');
     });
 
-    // دکمه برگشت
+    // back btn
     document.getElementById('back-button').addEventListener('click', function () {
-        window.history.back(); // برگشت به صفحه قبلی
+        window.history.back(); // back to previous page
     });
 
-    // دکمه ثبت امتیاز (برای همه غذاها)
+    // Rating button (for all foods)
     document.getElementById('submit-rating-button').addEventListener('click', function () {
         const ratings = [];
         document.querySelectorAll('.food-item').forEach(foodItem => {
@@ -78,11 +77,11 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         if (ratings.length === 0) {
-            alert('لطفاً حداقل به یکی از غذاها امتیاز دهید.');
+            alert('Please rate at least one of the foods..');
             return;
         }
 
-        // ارسال امتیاز به API برای هر غذا جداگانه
+        // Sending ratings to the API for each individual food
         ratings.forEach(rating => {
             fetch('/api/rate_food/', {
                 method: 'POST',
@@ -90,19 +89,19 @@ document.addEventListener('DOMContentLoaded', function () {
                     'Authorization': `Token ${token}`,
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(rating)  // ارسال امتیاز برای هر غذا جداگانه
+                body: JSON.stringify(rating)
             })
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    alert('امتیاز شما با موفقیت ثبت شد!');
+                    alert('Your rating was successfully registered.!');
                     window.location.href = '/customer-profile/';
                 } else {
-                    alert('خطا در ثبت امتیاز.');
+                    alert('Error in registering rating.');
                 }
             })
             .catch(error => {
-                alert('خطا در ارتباط با سرور.');
+                alert('Error connecting with the server..');
             });
         });
     });
