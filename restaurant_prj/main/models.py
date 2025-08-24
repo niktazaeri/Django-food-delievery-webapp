@@ -29,9 +29,9 @@ class Users(AbstractUser):
 class Address(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='addresses')
     address = models.CharField(max_length=100,blank=False , null=False)
-    details = models.CharField(max_length=100, blank=False, null=False) #kooche , shomare pelak , vahed
-    postal_code = models.CharField(max_length=100 , blank=True , null =True)#code posti ekhtiari
-    title = models.CharField(max_length=50 , blank=True , null =True) #عنوان آدرس (اختیاری) مثل : خانه ، محل کار
+    details = models.CharField(max_length=100, blank=False, null=False) #street , doorplate ,etc
+    postal_code = models.CharField(max_length=100 , blank=True , null =True)#postal code (optional)
+    title = models.CharField(max_length=50 , blank=True , null =True) #title (optional e.g : home,work,..)
 
     def __str__(self):
         return f"Address : {self.address} {self.details}"
@@ -44,11 +44,11 @@ class Food(models.Model):
     description = models.TextField(blank=False, null=False)
     image = models.ImageField(upload_to='images/', blank=True, null=True)
     FOOD_CATEGORIES = [
-        ('ایرانی', 'ایرانی'),
-        ('فست فود', 'فست فود'),
-        ('دسر', 'دسر'),
-        ('پیش غذا', 'پیش غذا'),
-        ('نوشیدنی', 'نوشیدنی'),
+        ('ایرانی', 'ایرانی'), #Iranian
+        ('فست فود', 'فست فود'), #Fastfood
+        ('دسر', 'دسر'), #Dessert
+        ('پیش غذا', 'پیش غذا'), #Appetizer
+        ('نوشیدنی', 'نوشیدنی'), #Drinks
     ]
     category = models.CharField(max_length=50, choices=FOOD_CATEGORIES)
 
@@ -59,8 +59,8 @@ class Food(models.Model):
         return sales_count
 
     def average_rating(self):
-        # محاسبه میانگین امتیاز غذا
-        ratings = self.ratings.all()  # همه امتیازهای غذا
+        # calculate food rate average
+        ratings = self.ratings.all()  # all food's rate
         if ratings.exists():
             average_rate = sum(float(rate.rating) for rate in ratings) / ratings.count()
             return round(average_rate, 2)
@@ -86,7 +86,7 @@ class UsedCoupon(models.Model):
     used_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        unique_together = ('user', 'coupon') #یکبار مصرف بودن
+        unique_together = ('user', 'coupon') #Being disposable
 
     def __str__(self):
         return f"{self.user} used {self.coupon.code} , {self.coupon.discount})"
@@ -116,19 +116,19 @@ class Order(models.Model):
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default='Pending')
     created_at = models.DateTimeField(auto_now_add=True)#tarikhe sefaresh
 
-    def total_price(self):#درآمد حاصل از یک سفارش
+    def total_price(self):#total revenue from an order
         total = 0
-        for order_item in self.items.all():  # جمع درآمد از تمامی آیتم‌های سفارش
-            total += order_item.total_price()  # استفاده از متد total_price در OrderItem
+        for order_item in self.items.all():  # sum of income from all items in an order
+            total += order_item.total_price()  # using total_price() from OrderItem model
         return total
 
     def discounted_price(self):
-        total = self.total_price()  # محاسبه مجموع درآمد
+        total = self.total_price()  # calculate total revenue
         if self.used_coupon:
-            discount = self.used_coupon.coupon.discount / 100  # تخفیف به درصد
-            discounted_price = total - (total * discount)  # محاسبه مبلغ تخفیف‌خورده
-            return round(discounted_price, 2)  # گرد کردن به دو رقم اعشار
-        return round(total, 2)  # در صورتی که تخفیف اعمال نشده باشد، مجموع درآمد گرد می‌شود به دو رقم اعشار
+            discount = self.used_coupon.coupon.discount / 100  # discount in percent
+            discounted_price = total - (total * discount)  # calculate price after applying discount
+            return round(discounted_price, 2)  # round up to 2 digits
+        return round(total, 2)  # If the discount is not applied, the total income will be rounded up to two digits.
 
     def __str__(self):
         return f"{self.user} orders at {self.created_at}"
@@ -148,7 +148,7 @@ class CartItem(models.Model):
     quantity = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1)])
     coupon = models.ForeignKey(Coupon, on_delete=models.CASCADE, null=True, blank=True)
     def total_price(self):
-        # مجموع قیمت هر غذا
+        # total price for each food
         total = self.food.price * self.quantity
 
         return total
